@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🖼 Destination Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #gallery-container {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      height: auto;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 132, 180, 0.8);
+      border: none;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .nav-btn:hover {
+      background: rgba(0, 132, 180, 1);
+    }
+
+    #prevBtn {
+      left: -40px;
+    }
+
+    #nextBtn {
+      right: -40px;
+    }
+
+    #back {
+      margin-top: 30px;
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+    }
+
+    #back:hover {
+      background: linear-gradient(to right, #0083b0, #00b4db);
+    }
+
+    @media screen and (max-width: 600px) {
+      .nav-btn {
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      #prevBtn { left: 0; }
+      #nextBtn { right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>📷 Destination Gallery</h1>
+
+<div id="gallery-container">
+  <button id="prevBtn" class="nav-btn">&#8592;</button>
+  <img id="galleryImage" src="" alt="Destination Photo">
+  <button id="nextBtn" class="nav-btn">&#8594;</button>
+</div>
+
+<button id="back" onclick="window.location.href='index.html'">← Back to List</button>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const destinationId = urlParams.get('id');
+
+  let photos = [];
+  let currentIndex = 0;
+
+  async function loadGallery() {
+    const res = await fetch('/api/destinations');
+    const data = await res.json();
+    const dest = data.find(d => d.id == destinationId);
+
+    if (!dest || !dest.photos) {
+      document.getElementById('gallery-container').innerHTML = '<p>No photos found.</p>';
+      return;
+    }
+
+    photos = dest.photos.split(',').filter(p => p.trim());
+    if (photos.length === 0) {
+      document.getElementById('gallery-container').innerHTML = '<p>No photos found.</p>';
+      return;
+    }
+
+    showImage(currentIndex);
+  }
+
+  function showImage(index) {
+    const img = document.getElementById('galleryImage');
+    img.src = `/uploads/${photos[index]}`;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+    showImage(currentIndex);
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % photos.length;
+    showImage(currentIndex);
+  });
+
+  loadGallery();
+</script>
+
+</body>
+</html>

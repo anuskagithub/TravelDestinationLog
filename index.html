@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌍 Travel Destination Log</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #f1f1f1;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      margin: 30px 0 20px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffffcc;
+    }
+
+    form {
+      background: #202040;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="file"] {
+      background: #2a2a4a;
+      color: #fff;
+    }
+
+    input[type="file"] {
+      padding: 8px;
+    }
+
+    button {
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #0083b0, #00b4db);
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #2a2a4a;
+      padding: 20px;
+      border-radius: 12px;
+      width: 240px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(0, 180, 219, 0.3);
+    }
+
+    .card strong {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .card em {
+      display: block;
+      margin-top: 6px;
+      color: #cccccc;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .card-buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-buttons button {
+      width: 48%;
+      padding: 8px 12px;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+
+    .card-buttons .delete {
+      background: #e74c3c;
+    }
+
+    .card-buttons .delete:hover {
+      background: #c0392b;
+    }
+
+    @media screen and (max-width: 600px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Travel Journal</h1>
+
+<h2>Add a Travel Memory</h2>
+<form id="destinationForm" enctype="multipart/form-data">
+  <input type="hidden" id="id">
+  <input type="text" id="place" name="place" placeholder="Enter place..." required>
+  <input type="date" id="date_of_visit" name="date_of_visit" required>
+  <input type="file" id="photos" name="photos" multiple accept="image/*">
+  <button type="submit">Save Destination</button>
+</form>
+
+<h2>Destinations</h2>
+<div class="card-container" id="destinationList"></div>
+
+<script>
+  const form = document.getElementById('destinationForm');
+  const list = document.getElementById('destinationList');
+
+  async function fetchDestinations() {
+    const res = await fetch('/api/destinations');
+    const data = await res.json();
+    list.innerHTML = '';
+
+    data.forEach(dest => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      const dateOnly = new Date(dest.date_of_visit).toISOString().split('T')[0];
+
+      card.innerHTML = `
+        <strong>${dest.place}</strong>
+        <em>${dateOnly}</em>
+        <div class="card-buttons">
+          <button onclick="editDestination(event, ${dest.id}, '${dest.place}', '${dest.date_of_visit}')">Edit</button>
+          <button class="delete" onclick="deleteDestination(event, ${dest.id})">Delete</button>
+        </div>
+      `;
+
+      card.addEventListener('click', function () {
+        window.location.href = `/gallery.html?id=${dest.id}`;
+      });
+
+      list.appendChild(card);
+    });
+  }
+
+  function deleteDestination(event, id) {
+    event.stopPropagation();
+    fetch(`/api/destinations/${id}`, { method: 'DELETE' })
+      .then(() => fetchDestinations());
+  }
+
+  function editDestination(event, id, place, date) {
+    event.stopPropagation();
+    document.getElementById('id').value = id;
+    document.getElementById('place').value = place;
+    document.getElementById('date_of_visit').value = date;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    const id = document.getElementById('id').value;
+    const place = document.getElementById('place').value;
+    const date = document.getElementById('date_of_visit').value;
+    const files = document.getElementById('photos').files;
+
+    formData.append('place', place);
+    formData.append('date_of_visit', date);
+    for (let i = 0; i < files.length; i++) {
+      formData.append('photos', files[i]);
+    }
+
+    if (id) {
+      await fetch(`/api/destinations/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ place, date_of_visit: date })
+      });
+    } else {
+      await fetch('/api/destinations', {
+        method: 'POST',
+        body: formData
+      });
+    }
+
+    form.reset();
+    fetchDestinations();
+  });
+
+  fetchDestinations();
+</script>
+
+</body>
+</html>
