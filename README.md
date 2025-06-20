@@ -29,11 +29,11 @@ cd travel-destination-log
 npm install
 
 ```
-## 🔌 RESTful API Documentation
+## 🔌RESTful API Documentation
 ### 1. POST /api/destinations
 Add a new destination.
--Method: POST
--Content-Type: multipart/form-data
+>Method: POST
+>Content-Type: multipart/form-data
 
 Body Params:                                                 
 | Field        | Type   | Description                |
@@ -43,63 +43,61 @@ Body Params:
 | `photos[]`   | files  | One or more image files    |
 
 
-cURL Example:
-bash
-Copy
-Edit
+CURL Example:
+```bash
 curl -X POST http://localhost:3000/api/destinations \
   -F "place=Darjeeling" \
   -F "date_of_visit=2024-06-01" \
   -F "photos=@/absolute/path/to/photo1.jpg" \
   -F "photos=@/absolute/path/to/photo2.jpg"
-2. GET /api/destinations
+
+
+```
+
+
+### 2. GET /api/destinations
 Fetch all destinations.
+>Method: GET
+>Response: JSON list of destinations
 
-Method: GET
-
-Response: JSON list of destinations
-
-cURL Example:
-bash
-Copy
-Edit
+CURL Example:
+```bash
 curl http://localhost:3000/api/destinations
-3. PUT /api/destinations/:id
+
+```
+
+### 3. PUT /api/destinations/:id
 Update destination name or date.
+>Method: PUT
+>Content-Type: application/json
 
-Method: PUT
-
-Content-Type: application/json
-
-Body:
-json
-Copy
-Edit
+```json
 {
   "place": "Updated Name",
   "date_of_visit": "2024-06-10"
 }
-cURL Example:
-bash
-Copy
-Edit
+
+```
+
+CURL Example:
+```bash
 curl -X PUT http://localhost:3000/api/destinations/1 \
   -H "Content-Type: application/json" \
   -d '{"place":"New Place","date_of_visit":"2024-06-10"}'
-4. DELETE /api/destinations/:id
+
+```
+
+### 4. DELETE /api/destinations/:id
 Delete a destination and its photos.
+>Method: DELETE
 
-Method: DELETE
-
-cURL Example:
-bash
-Copy
-Edit
+CURL Example:
+```bash
 curl -X DELETE http://localhost:3000/api/destinations/1
+```
+
 📁 Folder Structure
-perl
-Copy
-Edit
+
 travel-destination-log/
 ├── public/
 │   └── uploads/         # Uploaded images
@@ -109,9 +107,9 @@ travel-destination-log/
 ├── server.js            # Express backend
 ├── package.json
 └── README.md
-🖼 UI Features
-🎨 Clean dark-themed UI
 
+🖼 UI Features
+>🎨 Clean dark-themed UI
 📸 Photo gallery per destination
 
 🖱 Click photo to zoom
