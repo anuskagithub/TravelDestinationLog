@@ -125,6 +125,9 @@ curl -X POST http://localhost:3000/api/destinations \
   -F "photos=@/c/Users/yourname/Pictures/kolkata1.jpg"
 ```
 
+## 📸 Screenshots
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/c059d320-87f0-425a-95f7-471193aa120d" />
+![Uploading image.png…]()
 
 
 
