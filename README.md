@@ -127,7 +127,7 @@ curl -X POST http://localhost:3000/api/destinations \
 
 ## 📸 Screenshots
 <img width="959" alt="image" src="https://github.com/user-attachments/assets/c059d320-87f0-425a-95f7-471193aa120d" />
-<img width="935" alt="image" src="https://github.com/user-attachments/assets/a063a873-301d-4137-b673-bea627416cf6" />
+
 
 
 
