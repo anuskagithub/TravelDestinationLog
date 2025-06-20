@@ -1,4 +1,4 @@
-# Trave lDestination Log
+# Travel Destination Log
 
 A full-stack travel journal application to log and browse destinations with date and photo galleries. The app is built using **Node.js + Express** for the backend, **MySQL** for the database, and **HTML/CSS/JS** for the frontend.
 
