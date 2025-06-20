@@ -32,8 +32,8 @@ npm install
 ## 🔌RESTful API Documentation
 ### 1. POST /api/destinations
 Add a new destination.
->Method: POST
->Content-Type: multipart/form-data
+- Method: POST
+- Content-Type: multipart/form-data
 
 Body Params:                                                 
 | Field        | Type   | Description                |
@@ -57,8 +57,8 @@ curl -X POST http://localhost:3000/api/destinations \
 
 ### 2. GET /api/destinations
 Fetch all destinations.
->Method: GET
->Response: JSON list of destinations
+- Method: GET
+- Response: JSON list of destinations
 
 CURL Example:
 ```bash
@@ -68,8 +68,8 @@ curl http://localhost:3000/api/destinations
 
 ### 3. PUT /api/destinations/:id
 Update destination name or date.
->Method: PUT
->Content-Type: application/json
+- Method: PUT
+- Content-Type: application/json
 
 ```json
 {
@@ -89,7 +89,7 @@ curl -X PUT http://localhost:3000/api/destinations/1 \
 
 ### 4. DELETE /api/destinations/:id
 Delete a destination and its photos.
->Method: DELETE
+- Method: DELETE
 
 CURL Example:
 ```bash
@@ -109,28 +109,21 @@ travel-destination-log/
 └── README.md
 
 🖼 UI Features
->🎨 Clean dark-themed UI
-📸 Photo gallery per destination
-
-🖱 Click photo to zoom
-
-⬅️➡️ Navigate photos with arrows
-
-🗑️ Delete destination and images
+- 🎨 Clean dark-themed UI
+- 📸 Photo gallery per destination
+- ⬅️➡️ Navigate photos with arrows
+- 🗑️ Delete destination and images
 
 🧪 API Testing
 Use Postman or curl to test the API.
 
 📌 Test image upload:
-
-bash
-Copy
-Edit
+```bash
 curl -X POST http://localhost:3000/api/destinations \
   -F "place=Kolkata" \
   -F "date_of_visit=2024-04-01" \
   -F "photos=@/c/Users/yourname/Pictures/kolkata1.jpg"
-
+```
 
 
 
