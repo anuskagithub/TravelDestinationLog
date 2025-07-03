@@ -76,7 +76,9 @@ CREATE TABLE destinations (
 | DELETE | `/destinations`      | Delete all destinations               |
 
 
+
 ## 🔄 CRUD API Operations
+
 
 ### 📥 Create a Destination
 ```
@@ -124,6 +126,8 @@ curl -X DELETE http://localhost:8080/api/destinations/42
 # Delete all
 curl -X DELETE http://localhost:8080/api/destinations
 ```
+
+
 
 ## ✅ Manual Testing Snapshots with cURL
 
