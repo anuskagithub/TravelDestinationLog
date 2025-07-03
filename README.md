@@ -126,8 +126,7 @@ curl -X DELETE http://localhost:8080/api/destinations/42
 # Delete all
 curl -X DELETE http://localhost:8080/api/destinations
 ```
-
-
+---
 
 ## ✅ Manual Testing Snapshots with cURL
 
