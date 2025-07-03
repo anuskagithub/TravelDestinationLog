@@ -251,6 +251,19 @@ jobs:
 
 ```
 
+### 🐳 Docker Usage
+#### 📦 Build and Run
+```
+bash
+docker build -t travel-api .
+docker run -p 3000:3000 --name travel-api-container --network keploy-network travel-api
+```
+
+#### 🐙 With Docker Compose
+```
+bash
+docker-compose up
+```
 
           
 
