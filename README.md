@@ -55,11 +55,13 @@ CREATE TABLE destinations (
 ```
 ## 🚀 Application Running
 🔌 Backend API Server
-Runs on:
-http://localhost:8080
+- The Express server runs on:  
+  `http://localhost:3000`
+  <img width="947" alt="image" src="https://github.com/user-attachments/assets/309381c8-bd72-4b71-a03e-b45afaf8c4a3" />
 
 
+- Swagger API Docs:  
+  `http://localhost:3000/api-docs`
+  <img width="938" alt="image" src="https://github.com/user-attachments/assets/e849343e-7bf1-46cb-a2ea-bde210539b8d" />
 
-Swagger Docs:
-http://localhost:8080/api-docs
 
