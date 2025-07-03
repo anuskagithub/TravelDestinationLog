@@ -75,4 +75,53 @@ CREATE TABLE destinations (
 | DELETE | `/destinations/:id`  | Delete destination by ID              |
 | DELETE | `/destinations`      | Delete all destinations               |
 
+## 🔄 CRUD API Operations
+# 📥 Create a Destination
+```
+bash
+curl -X POST http://localhost:8080/api/destinations \
+  -F "name=Paris" \
+  -F "location=France" \
+  -F "description=City of Light" \
+  -F "date=2025-07-01" \
+  -F "images=@/path/to/photo1.jpg" \
+  -F "images=@/path/to/photo2.jpg"
+
+```
+
+# 📤 Read Destinations
+```
+bash
+# Get all
+curl http://localhost:8080/api/destinations
+
+# Get by ID
+curl http://localhost:8080/api/destinations/43
+
+```
+
+# ✏️ Update Destination
+```
+bash
+curl -X PUT http://localhost:8080/api/destinations/3 \
+  -H "Content-Type: application/json" \
+  -d '{
+        "name": "London",
+        "location": "UK",
+        "description": "City of History",
+        "date": "2025-08-15"
+      }'
+```
+
+# ❌ Delete Destination(s)
+```
+bash
+# Delete by ID
+curl -X DELETE http://localhost:8080/api/destinations/42
+
+# Delete all
+curl -X DELETE http://localhost:8080/api/destinations
+```
+
+
 
