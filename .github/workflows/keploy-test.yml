@@ -1,0 +1,43 @@
+name: Keploy API Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  keploy-api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Docker image
+      run: docker build -t travel-api .
+
+    - name: Create Docker network
+      run: docker network create keploy-network
+
+    - name: Run Keploy test
+      run: |
+        docker run --rm \
+          --network keploy-network \
+          -v ${{ github.workspace }}/keploy-test-data:/app/keploy-test-data \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -e APP_CONTAINER_COMMAND="docker run -d --network keploy-network --name travel-api-container travel-api" \
+          ghcr.io/keploy/keploy:v2.6.14 \
+          test \
+          --container-name travel-api-container \
+          --path /app/keploy-test-data \
+          --delay 10 \
+          --buildDelay 30

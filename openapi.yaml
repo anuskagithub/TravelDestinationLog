@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Travel API
+  version: 1.0.0
+  description: API for logging travel destinations
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /destinations:
+    get:
+      summary: Get all travel destinations
+      responses:
+        '200':
+          description: List of destinations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    place:
+                      type: string
+                    date_of_visit:
+                      type: string
+                    image:
+                      type: string
+
+    post:
+      summary: Add a new travel destination
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                place:
+                  type: string
+                date_of_visit:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Destination added successfully
+        '400':
+          description: Invalid input
