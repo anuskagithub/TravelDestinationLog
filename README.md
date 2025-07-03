@@ -207,6 +207,10 @@ keploy test \
 📁 .github/workflows/keploy-test.yml
 ```
 yaml
+⚙️ CI/CD Integration with GitHub Actions
+📁 .github/workflows/keploy-test.yml
+```
+yaml
 name: Keploy API Testing
 
 on:
