@@ -271,8 +271,11 @@ docker-compose up
 ---
 
 ## Test Report Summary
-<img width="653" alt="image" src="https://github.com/user-attachments/assets/d86643f4-1b6b-4870-a3aa-373004719af7" />
-<img width="838" alt="image" src="https://github.com/user-attachments/assets/9e8c165c-bfad-4eda-9183-0136b56d9fe4" />
+<img src="https://github.com/user-attachments/assets/d86643f4-1b6b-4870-a3aa-373004719af7" width="700"/>
+
+<br/>
+
+<img src="https://github.com/user-attachments/assets/9e8c165c-bfad-4eda-9183-0136b56d9fe4" width="700"/>
 
 
 
