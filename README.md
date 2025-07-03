@@ -154,5 +154,30 @@ curl -X DELETE http://localhost:8080/api/destinations
 <img width="289" alt="Delete Destination by ID" src="https://github.com/user-attachments/assets/e86f5665-a678-43ff-bff0-4caf2eda1574" />
 
 
+## 📊 Test Coverage
+
+- ✅ **Unit tests** for service logic (mocked DB)
+- ✅ **Integration tests** for controller + DB + routes
+- ✅ **API endpoint tests** using Supertest
+- ✅ **Edge case validation** (missing fields, invalid IDs)
+- ✅ **File upload & cleanup tests** for images
+
+### 🧪 Coverage Metrics (via Jest)
+
+| Metric      | Percentage |
+|-------------|------------|
+| Statements  | 85.85%     |
+| Branches    | 86.11%     |
+| Functions   | 92.85%     |
+| Lines       | 86.45%     |
+
+
+📌 Coverage is measured using `jest --coverage`
+
+### 📸 Coverage Report Screenshot
+<img width="548" alt="image" src="https://github.com/user-attachments/assets/9b19e0d7-e073-4724-958e-d6fcd3095637" />
+
+
+
 
 
