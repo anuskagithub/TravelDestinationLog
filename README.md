@@ -205,11 +205,9 @@ keploy test \
 
 ### ⚙️ CI/CD Integration with GitHub Actions
 📁 .github/workflows/keploy-test.yml
+
 ```
-yaml
-⚙️ CI/CD Integration with GitHub Actions
-📁 .github/workflows/keploy-test.yml
-```
+
 yaml
 name: Keploy API Testing
 
@@ -250,7 +248,11 @@ jobs:
       - name: Run Keploy Tests
         run: |
           keploy test --path ./keploy-test-data --container-name travel-api-container
+
 ```
+
+
+          
 
 
 
