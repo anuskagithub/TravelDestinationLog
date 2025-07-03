@@ -177,6 +177,77 @@ curl -X DELETE http://localhost:8080/api/destinations
 ### 📸 Coverage Report Screenshot
 <img width="548" alt="image" src="https://github.com/user-attachments/assets/9b19e0d7-e073-4724-958e-d6fcd3095637" />
 
+---
+## 🧪 API Testing using Keploy AI
+
+### ✅ 1. Record API Test Cases
+```
+bash
+keploy record \
+  -c "docker run -p 3000:3000 -e PORT=3000 --name travel-api-container --network keploy-network travel-api" \
+  --container-name "travel-api-container" \
+  --path ./keploy-test-data \
+  --record-timer 1m \
+  --build-delay 30
+
+```
+Make API requests (via Postman, browser, curl) during the record time.
+
+### 🔁 2. Replay & Validate Tests
+```
+bash
+keploy test \
+  --path ./keploy-test-data \
+  --container-name travel-api-container
+```
+
+--- 
+
+### ⚙️ CI/CD Integration with GitHub Actions
+📁 .github/workflows/keploy-test.yml
+```
+yaml
+name: Keploy API Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  keploy-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up Keploy CLI
+        run: |
+          curl -sL https://dl.keploy.io/install.sh | bash
+          echo "$HOME/.keploy/bin" >> $GITHUB_PATH
+
+      - name: Build Docker image
+        run: docker build -t travel-api .
+
+      - name: Create Docker network
+        run: docker network create keploy-network
+
+      - name: Run container
+        run: |
+          docker run -d -p 3000:3000 --name travel-api-container \
+            --network keploy-network -e PORT=3000 travel-api
+          sleep 10
+
+      - name: Run Keploy Tests
+        run: |
+          keploy test --path ./keploy-test-data --container-name travel-api-container
+```
+
 
 
 
