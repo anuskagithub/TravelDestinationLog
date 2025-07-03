@@ -125,19 +125,30 @@ curl -X DELETE http://localhost:8080/api/destinations/42
 curl -X DELETE http://localhost:8080/api/destinations
 ```
 
-### ✅ Manual Testing
-Verified with cURL
+## ✅ Manual Testing Snapshots with cURL
 
-#### 🔹 Create Destination
-<img width="287" alt="image" src="https://github.com/user-attachments/assets/ea4f461b-de57-4ba0-a38d-4e43fdde7074" />
+### 🔹 Create Destination  
+<img width="287" alt="Create Destination" src="https://github.com/user-attachments/assets/ea4f461b-de57-4ba0-a38d-4e43fdde7074" />
 
+---
 
-####🔹 Get All Destinations
-<img width="726" alt="image" src="https://github.com/user-attachments/assets/732678e4-7e46-4078-a692-5bacfafbc189" />
+### 🔹 Get All Destinations  
+<img width="726" alt="Get All Destinations" src="https://github.com/user-attachments/assets/732678e4-7e46-4078-a692-5bacfafbc189" />
 
-####🔹 Get Destination by ID
-<img width="722" alt="image" src="https://github.com/user-attachments/assets/4a41a0cd-64a7-4191-997d-d0b30f310deb" />
+---
 
+### 🔹 Get Destination by ID  
+<img width="722" alt="Get Destination by ID" src="https://github.com/user-attachments/assets/4a41a0cd-64a7-4191-997d-d0b30f310deb" />
+
+---
+
+### 🔹 Update Destination by ID  
+<img width="500" alt="Update Destination by ID" src="https://github.com/user-attachments/assets/d4a229cf-456e-4c5b-9336-91b9d26c6329" />
+
+---
+
+### 🔹 Delete Destination by ID  
+<img width="289" alt="Delete Destination by ID" src="https://github.com/user-attachments/assets/e86f5665-a678-43ff-bff0-4caf2eda1574" />
 
 
 
