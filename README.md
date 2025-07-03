@@ -125,5 +125,12 @@ curl -X DELETE http://localhost:8080/api/destinations/42
 curl -X DELETE http://localhost:8080/api/destinations
 ```
 
+## ✅ Manual Testing
+Verified with cURL
+
+#### 🔹 Create Destination
+<img width="293" alt="image" src="https://github.com/user-attachments/assets/6e5ec073-d84a-44ca-a090-c962a974eeb8" />
+
+
 
 
