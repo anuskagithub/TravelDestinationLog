@@ -75,8 +75,10 @@ CREATE TABLE destinations (
 | DELETE | `/destinations/:id`  | Delete destination by ID              |
 | DELETE | `/destinations`      | Delete all destinations               |
 
-### 🔄 CRUD API Operations
-## 📥 Create a Destination
+
+## 🔄 CRUD API Operations
+
+### 📥 Create a Destination
 ```
 bash
 curl -X POST http://localhost:8080/api/destinations \
@@ -89,7 +91,7 @@ curl -X POST http://localhost:8080/api/destinations \
 
 ```
 
-## 📤 Read Destinations
+### 📤 Read Destinations
 ```
 bash
 # Get all
@@ -100,7 +102,7 @@ curl http://localhost:8080/api/destinations/43
 
 ```
 
-## ✏️ Update Destination
+### ✏️ Update Destination
 ```
 bash
 curl -X PUT http://localhost:8080/api/destinations/3 \
@@ -113,7 +115,7 @@ curl -X PUT http://localhost:8080/api/destinations/3 \
       }'
 ```
 
-## ❌ Delete Destination(s)
+### ❌ Delete Destination(s)
 ```
 bash
 # Delete by ID
