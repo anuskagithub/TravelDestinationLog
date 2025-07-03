@@ -64,4 +64,15 @@ CREATE TABLE destinations (
   `http://localhost:3000/api-docs`
   <img width="938" alt="image" src="https://github.com/user-attachments/assets/e849343e-7bf1-46cb-a2ea-bde210539b8d" />
 
+## 🧾 API Endpoints
+
+| Method | Endpoint             | Description                           |
+|--------|----------------------|---------------------------------------|
+| GET    | `/destinations`      | List all destinations                 |
+| GET    | `/destinations/:id`  | Get a single destination by ID        |
+| POST   | `/destinations`      | Add a new destination (with images)   |
+| PUT    | `/destinations/:id`  | Update a destination                  |
+| DELETE | `/destinations/:id`  | Delete destination by ID              |
+| DELETE | `/destinations`      | Delete all destinations               |
+
 
